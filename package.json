@@ -1,0 +1,29 @@
+{
+  "name": "password-manager-backend-mongo",
+  "version": "1.0.0",
+  "description": "Manage password of your multiple apps",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rajivranjanpandey/password-manager-backend-mongo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rajivranjanpandey/password-manager-backend-mongo/issues"
+  },
+  "homepage": "https://github.com/rajivranjanpandey/password-manager-backend-mongo#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^17.3.0",
+    "mongoose": "^5.10.17"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
