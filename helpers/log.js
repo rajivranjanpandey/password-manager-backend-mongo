@@ -1,6 +1,6 @@
 const { func } = require("joi");
 
-const createError = (statusCode, message = 'We are facing some issues.', res, errorLog) => {
+const sendLog = (statusCode, res, errorLog, message = 'We are facing some issues.') => {
     if (errorLog)
         console.log(errorLog);
     else
@@ -8,5 +8,5 @@ const createError = (statusCode, message = 'We are facing some issues.', res, er
     res.status(statusCode).json({ message });
 }
 module.exports = {
-    createError
+    sendLog
 }

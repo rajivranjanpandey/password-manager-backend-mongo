@@ -21,8 +21,10 @@ const usersSchema = new mongoose.Schema({
 // schema.set is used for toJSON and toObject to enable certain properties like getters and virtuals.
 usersSchema.set('toJSON', { getters: true, virtuals: true });
 // schema.methods.fnName are called over instance known as documents in mongoose.
-
 // schema.statics.fnName are called over models.
+usersSchema.statics.findByMobile = function (mobile) {
+    return this.find({ mobile: Number(mobile) });
+}
 // schema.virtual(virtualName) is not stored but used for client operation.
 
 module.exports = Users = mongoose.model('users', usersSchema);

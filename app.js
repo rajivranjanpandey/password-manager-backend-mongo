@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const { DB_URI } = require('./config/secret_keys');
 const apiRouters = require('./routes');
+const { sendLog } = requreG('helpers/log');
+
 const app = express();
 app.use(express.json());
 
@@ -10,6 +12,12 @@ mongoose
     .then(() => console.log('Mongoose connected'))
     .catch(err => console.log(err));
 
+// API MIDDLEWARE.
 app.use('/api', apiRouters);
+
+// GENERIC ERROR MIDDLEWARE
+app.use((err, req, res, next) => {
+    sendLog(500, res, err);
+})
 
 app.listen(3000, () => console.log('Server started'));
