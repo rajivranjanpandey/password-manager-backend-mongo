@@ -15,6 +15,6 @@ const tempOtpSchema = new mongoose.Schema({
 }, { timestamps: { createdAt: false, updatedAt: false } });
 
 tempOtpSchema.statics.findByMobile = function (mobile) {
-    return this.find({ mobile: Number(mobile) });
+    return this.findOne({ mobile: Number(mobile) });
 }
 module.exports = TempOtp = mongoose.model('temp_otp', tempOtpSchema);

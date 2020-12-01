@@ -1,8 +1,9 @@
 const express = require('express');
+require('./helpers/globals'); // initialize global variables
 const mongoose = require('mongoose');
 const { DB_URI } = require('./config/secret_keys');
 const apiRouters = require('./routes');
-const { sendLog } = requreG('helpers/log');
+const { sendLog } = requireG('helpers/log');
 
 const app = express();
 app.use(express.json());

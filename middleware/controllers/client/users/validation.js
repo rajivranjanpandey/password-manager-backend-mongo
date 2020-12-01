@@ -3,7 +3,7 @@ const { sendLog } = require('../../../../helpers/log');
 
 const sendOtpValidation = (req, res, next) => {
     const schema = Joi.object().keys({
-        mobile: Joi.number().required().max(10)
+        mobile: Joi.number().required().integer().min(1000000000).max(9999999999)
     });
     schema.validateAsync(req.body)
         .then(() => next())
@@ -11,8 +11,8 @@ const sendOtpValidation = (req, res, next) => {
 }
 const verifyOtpValidation = (req, res, next) => {
     const schema = Joi.object().keys({
-        mobile: Joi.number().required().max(10),
-        otp: Joi.number().required().min(4).max(4)
+        mobile: Joi.number().required().integer().min(1000000000).max(9999999999),
+        otp: Joi.number().required().integer().min(1000).max(9999)
     }).with('mobile', 'otp');
     schema.validateAsync(req.body)
         .then(() => next())
