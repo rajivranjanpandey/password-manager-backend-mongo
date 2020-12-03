@@ -22,7 +22,7 @@ const userPasswordSchema = new mongoose.Schema({
     }]
 }, { timestamps: { createdAt: 'created_at', updatedAt: 'updated_at' } });
 
-userPasswordSchema.statics.findListForUser = function (userId) {
+userPasswordSchema.statics.getListForUser = function (userId) {
     return this.find({ user_id: userId });
 }
 
