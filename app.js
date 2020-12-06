@@ -18,6 +18,7 @@ app.use('/api', apiRouters);
 
 // GENERIC ERROR MIDDLEWARE
 app.use((err, req, res, next) => {
+    console.log(err.message, err.code)
     sendLog(500, res, err);
 })
 

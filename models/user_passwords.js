@@ -7,7 +7,8 @@ const userPasswordSchema = new mongoose.Schema({
     },
     platform_name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     platform_passwords: [{
         password_label: {

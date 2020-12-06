@@ -1,5 +1,5 @@
-const CustomreUserPasswordController = require('./user_passwords');
+const CustomerUserPasswordController = require('./user_passwords');
 
 module.exports = {
-    CustomreUserPasswordController
+    CustomerUserPasswordController
 }

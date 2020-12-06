@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const { JWT_SALT } = requireG('config/secret_keys');
 
 const usersSchema = new mongoose.Schema({
     name: String,
@@ -21,6 +23,9 @@ const usersSchema = new mongoose.Schema({
 // schema.set is used for toJSON and toObject to enable certain properties like getters and virtuals.
 usersSchema.set('toJSON', { getters: true, virtuals: true });
 // schema.methods.fnName are called over instance known as documents in mongoose.
+usersSchema.methods.generateToken = function () {
+    return jwt.sign({ id: this._id }, JWT_SALT, { expiresIn: 360000 }).toString();
+}
 // schema.statics.fnName are called over models.
 usersSchema.statics.findByMobile = function (mobile) {
     return this.findOne({ mobile: Number(mobile) });

@@ -1,5 +1,4 @@
-const { raw } = require('express');
-const { sendLog } = require('helpers/log');
+const { sendLog } = requireG('helpers/log');
 const { UserPasswords } = require('../../../../models');
 
 // GET::USER PASSWORD LIST
@@ -34,7 +33,7 @@ const updateUserPassword = async (req, res, next) => {
         const userId = req.user._id;
         const updatePayload = req.body;
         const updatedPasswordRecord = await UserPasswords.findOneAndUpdate(
-            { user_id: userId, _id: raw.params.passwordId },
+            { user_id: userId, _id: req.params.passwordId },
             updatePayload,
             { new: true }
         );
