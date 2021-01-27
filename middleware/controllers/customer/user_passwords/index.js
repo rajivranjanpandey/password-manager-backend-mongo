@@ -33,40 +33,39 @@ const updateUserPassword = async (req, res, next) => {
         const userId = req.user._id;
         const updatePayload = req.body;
         // This method replaces the whole platform password array
-        // const updatedPasswordRecord = await UserPasswords.findOneAndUpdate(
-        //     { user_id: userId, _id: req.params.passwordId },
-        //     updatePayload,
-        //     { new: true }
-        // );
+        const updatedPasswordRecord = await UserPasswords.findOneAndUpdate(
+            { user_id: userId, _id: req.params.passwordId },
+            updatePayload,
+            { new: true }
+        );
+        res.status(200).json({ obj: updatedPasswordRecord.toJSON() });
+
 
         // This is the other way round.
-        const recordBasedOnId = await UserPasswords.findById(req.params.passwordId);
-        if (recordBasedOnId) {
-            const promiseArr = [];
-            // update platform name
-            recordBasedOnId.platform_name = updatePayload.platform_name;
+        // const recordBasedOnId = await UserPasswords.findById(req.params.passwordId);
+        // if (recordBasedOnId) {
+        //     const promiseArr = [];
+        //     // update platform name
+        //     recordBasedOnId.platform_name = updatePayload.platform_name;
 
-            updatePayload.platform_passwords.forEach(async (pw, index) => {
-                // Update existing passwords
-                if (pw.id) {
-                    promiseArr.push(await UserPasswords.findOneAndUpdate(
-                        { _id: pw.id },
-                        { $set: { password_label: pw.password_label, password_stream: pw.password_stream } },
-                        { new: true }
-                    ));
-                } else {
-                    // Add new ones
-                    recordBasedOnId.platform_passwords.push(pw);
-                }
-            });
-            const updatedResults = await Promise.all(promiseArr);
-            await recordBasedOnId.save();
+        //     updatePayload.platform_passwords.forEach(async (pw, index) => {
+        //         // Update existing passwords
+        //         if (pw.id) {
+        //             promiseArr.push(await UserPasswords.findOneAndUpdate(
+        //                 { _id: pw.id },
+        //                 { $set: { password_label: pw.password_label, password_stream: pw.password_stream } },
+        //                 { new: true }
+        //             ));
+        //         } else {
+        //             // Add new ones
+        //             recordBasedOnId.platform_passwords.push(pw);
+        //         }
+        //     });
+        //     const updatedResults = await Promise.all(promiseArr);
+        //     await recordBasedOnId.save();
 
-            res.status(200).json({ obj: recordBasedOnId.toJSON() });
+        //     res.status(200).json({ obj: recordBasedOnId.toJSON() });
 
-        }
-        else
-            sendLog(404, res, null, 'No record found');
     } catch (e) {
         next(new Error(e))
     }
