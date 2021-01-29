@@ -16,7 +16,7 @@ const createUserPasswordValidation = (req, res, next) => {
 }
 const updateUserPasswordValidation = (req, res, next) => {
     const platformSchema = Joi.object().keys({
-        id: Joi.string(),
+        // id: Joi.string(),
         password_label: Joi.string(),
         password_stream: Joi.string()
     })
