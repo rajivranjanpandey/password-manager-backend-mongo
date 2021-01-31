@@ -18,4 +18,13 @@ router.put('/user_passwords/:passwordId',
 router.delete('/user_passwords/:passwordId',
     customerController.CustomerUserPasswordController.deleteUserPassword
 );
+
+router.get('/profile',
+    customerController.UserProfileController.getUserDetails
+);
+router.put('/profile',
+    customerValidation.UserProfileValidation.updateUserProfileValidation,
+    customerController.UserProfileController.updateUserDetails
+);
+
 module.exports = router;
